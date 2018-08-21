@@ -1,10 +1,11 @@
+window.Event = new Vue();
 
 Vue.component('coupon', {
     template: '<input placeholder="Enter your coupon code" @blur="onCouponApplied">',
 
     methods: {
         onCouponApplied() {
-            this.$emit('applied');
+            Event.$emit('applied');
         }
     }
 });
@@ -15,6 +16,10 @@ new Vue({
 
     data: {
         couponApplied: false
+    },
+
+    created() {
+        Event.$on('applied', () => alert('Handling it') )
     },
 
     methods: {
